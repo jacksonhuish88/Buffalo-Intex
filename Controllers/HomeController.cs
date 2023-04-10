@@ -15,9 +15,9 @@ namespace Buffalo_Intex.Controllers
 
         private SupervisedResponseContext saContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(SupervisedResponseContext temp)
         {
-            _logger = logger;
+            saContext = temp;
         }
 
         public IActionResult Index()
@@ -50,7 +50,7 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult SupervisedAnalysis()
         {
-            var excavations saContext.Responses.ToList();
+            var excavations = saContext.Responses.ToList();
 
             return View(excavations);
 
