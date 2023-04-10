@@ -1,0 +1,59 @@
+﻿.fade-in {
+    position: relative;
+    z-index: 0;
+    opacity: 1;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-size: 100px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+h2{
+    font-size:64px;
+}
+
+
+.mynav-link{
+    color:white
+}
+.mynav-link:hover {
+    color: gold;
+    cursor:pointer;
+}
+
+.mynav-link-account {
+    color: gold
+}
+
+.mynav-link-account:hover {
+color: darkgoldenrod;
+cursor: pointer;
+}
+
+.myLabel {
+    float: left;
+    width: 85px;
+    text-align: right;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-right:25px;
+    width:175px;
+}
+
+.myInput {
+    width: 250px;
+    height: 24px;
+}
