@@ -13,11 +13,9 @@ namespace Buffalo_Intex.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private SupervisedResponseContext saContext { get; set; }
-
-        public HomeController(SupervisedResponseContext temp)
+        public HomeController(ILogger<HomeController> logger)
         {
-            saContext = temp;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -35,25 +33,11 @@ namespace Buffalo_Intex.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult SupervisedAnalysis(SupervisedResponse ar)
-        {
-
-            saContext.Add(ar);
-            saContext.SaveChanges();
-
-
-            return View("Prediction", ar);
-        }
-
-        [HttpGet]
 
         public IActionResult SupervisedAnalysis()
         {
-            var excavations = saContext.Responses
-                .ToList();
 
-            return View(excavations);
+            return View();
 
         }
 
