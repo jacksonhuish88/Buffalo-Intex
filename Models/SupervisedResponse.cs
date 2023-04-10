@@ -8,10 +8,6 @@ namespace Buffalo_Intex.Models
         [Required]
         public int BurialId { get; set; }
 
-        public decimal MaxCraniumLength { get; set; }
-
-        public decimal MaxCraniumBreadth { get; set; }
-
         public string SciaticNotch { get; set; }
 
         public string SubpubicAngle { get; set; }

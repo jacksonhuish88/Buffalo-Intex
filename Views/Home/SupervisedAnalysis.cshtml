@@ -2,18 +2,16 @@
     ViewData["Title"] = "Supervised Analysis";
 }
 
-@model Buffalo_Intex.Models.SupervisedResponse
+@model List<SupervisedResponse>
 
 <div class="text-center">
     <h1 class="display-4">This is the Supervised Analyis Page</h1>
     <p>Adult Supervision Required</p>
 </div>
 
-<table class="table table-bordered">
-    <thead>
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold">
         <tr>
-            <td>Max Cranium Length</td>
-            <td>Max Cranium Breadth</td>
             <td>Sciatic Notch</td>
             <td>Subpubic Angle</td>
             <td>Femur</td>
@@ -25,43 +23,24 @@
         </tr>
     </thead>
     <tbody>
-
+        @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.SciaticNotch</td>
+                    <td>@x.SubpubicAngle</td>
+                    <td>@x.Femur</td>
+                    <td>@x.FemurHeadDiameter</td>
+                    <td>@x.FemurLength</td>
+                    <td>@x.Humerus</td>
+                    <td>@x.HumerusHeadDiameter</td>
+                    <td>@x.HumerusLength</td>
+                </tr>
+            }
     </tbody>
 </table>
 
+<div>
+    <a asp-controller="Home" asp-action="SupervisedAnalysis">View Excavation Sex Predictions</a>
+</div>
 
-<h2>Enter information to predict excavation sex</h2>
 
-<form method="post">
-    <label asp-for="MaxCraniumLength">Max Cranium Length: </label>
-    <input asp-for="MaxCraniumLength" /><br />
-
-    <label asp-for="MaxCraniumBreadth">Max Cranium Breadth: </label>
-    <input asp-for="MaxCraniumBreadth" /><br />
-
-    <label asp-for="SciaticNotch">Sciatic Notch: </label>
-    <input asp-for="SciaticNotch" /><br />
-
-    <label asp-for="SubpubicAngle">Subpubic Angle: </label>
-    <input asp-for="SubpubicAngle" /><br />
-
-    <label asp-for="Femur">Femur: </label>
-    <input asp-for="Femur" /><br />
-
-    <label asp-for="FemurHeadDiameter">Femur Head Diameter: </label>
-    <input asp-for="FemurHeadDiameter" /><br />
-
-    <label asp-for="FemurLength">Femur Length: </label>
-    <input asp-for="FemurLength" /><br />
-
-    <label asp-for="Humerus">Humerus: </label>
-    <input asp-for="Humerus" /><br />
-
-    <label asp-for="HumerusHeadDiameter">Humerus Head Diameter: </label>
-    <input asp-for="HumerusHeadDiameter" /><br />
-
-    <label asp-for="HumerusLength">Humerus Length: </label>
-    <input asp-for="HumerusLength" /><br />
-
-    <button type="submit">Predict</button>
-</form>

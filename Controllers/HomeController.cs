@@ -50,7 +50,8 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult SupervisedAnalysis()
         {
-            var excavations = saContext.Responses.ToList();
+            var excavations = saContext.Responses
+                .ToList();
 
             return View(excavations);
 
