@@ -33,9 +33,15 @@ namespace Buffalo_Intex.Controllers
             return View();
         }
 
-        public IActionResult SupervisedAnalysis()
+        [HttpPost]
+        public IActionResult SupervisedAnalysis(SupervisedResponse ar)
         {
-            return View();
+
+            blahContext.Add(ar);
+            blahContext.SaveChanges();
+
+
+            return View("Prediction", ar);
         }
 
         public IActionResult UnsupervisedAnalysis()

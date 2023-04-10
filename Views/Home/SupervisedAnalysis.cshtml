@@ -12,7 +12,7 @@
 
 <h2>Enter information to predict excavation sex</h2>
 
-<form>
+<form method="post">
     <label asp-for="MaxCraniumLength">Max Cranium Length: </label>
     <input asp-for="MaxCraniumLength" /><br />
 
@@ -42,4 +42,6 @@
 
     <label asp-for="HumerusLength">Humerus Length: </label>
     <input asp-for="HumerusLength" /><br />
+
+    <button type="submit">Predict</button>
 </form>
