@@ -28,7 +28,7 @@ namespace Buffalo_Intex
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SupervisedResponseContext>(options =>
+            services.AddDbContext<MummyDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyDb")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

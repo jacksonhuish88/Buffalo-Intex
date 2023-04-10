@@ -2,42 +2,13 @@
     ViewData["Title"] = "Supervised Analysis";
 }
 
-@model List<SupervisedResponse>
 
 <div class="text-center">
     <h1 class="display-4">This is the Supervised Analyis Page</h1>
     <p>Adult Supervision Required</p>
 </div>
 
-<table class="table table-bordered table-striped">
-    <thead class="font-weight-bold">
-        <tr>
-            <td>Sciatic Notch</td>
-            <td>Subpubic Angle</td>
-            <td>Femur</td>
-            <td>Femur Head Diameter</td>
-            <td>Femur Length</td>
-            <td>Humerus</td>
-            <td>Humerus Head Diameter</td>
-            <td>Humerus Length</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var x in Model)
-            {
-                <tr>
-                    <td>@x.SciaticNotch</td>
-                    <td>@x.SubpubicAngle</td>
-                    <td>@x.Femur</td>
-                    <td>@x.FemurHeadDiameter</td>
-                    <td>@x.FemurLength</td>
-                    <td>@x.Humerus</td>
-                    <td>@x.HumerusHeadDiameter</td>
-                    <td>@x.HumerusLength</td>
-                </tr>
-            }
-    </tbody>
-</table>
+
 
 <div>
     <a asp-controller="Home" asp-action="SupervisedAnalysis">View Excavation Sex Predictions</a>
