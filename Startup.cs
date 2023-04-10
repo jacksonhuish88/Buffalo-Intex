@@ -32,7 +32,7 @@ namespace Buffalo_Intex
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyDb")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
