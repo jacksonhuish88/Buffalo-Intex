@@ -36,10 +36,25 @@ namespace Buffalo_Intex
                 .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.Configure<CookiePolicyOptions>(opt =>
+            services.Configure<IdentityOptions>(options =>
             {
-                opt.ConsentCookie.Name = "ConsentCookie";
-                opt.CheckConsentNeeded = context => true;
+                // Makes Password require 3 Unique characters and 12 totalcharacters
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 12;
+                options.Password.RequiredUniqueChars = 3;
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+
             });
 
             // may need this for the onnx file to run
