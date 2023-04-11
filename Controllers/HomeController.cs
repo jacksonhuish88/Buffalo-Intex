@@ -1,6 +1,5 @@
 ﻿using Buffalo_Intex.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using Buffalo_Intex.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -15,13 +14,15 @@ namespace Buffalo_Intex.Controllers
 {
     public class HomeController : Controller
     {
+        private IMummyRepository repo;
+
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment _env;
 
-        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment env)
+        public HomeController(ILogger<HomeController> logger, IMummyRepository temp)
         {
             _logger = logger;
-            _env = env;
+            repo = temp;
         }
 
         public IActionResult Index()
@@ -34,19 +35,33 @@ namespace Buffalo_Intex.Controllers
             return View();
         }
 
-        public IActionResult BurialSummary()
+        public IActionResult BurialSummary(int pageNum = 1)
         {
-            return View();
+            //var tables = new BurialSummaryViewModel
+            //{
+            //    Color = repo.Color.ToList(),
+            //    Bodyanalysischart = repo.Bodyanalysischart.ToList(),
+            //    Textilefunction = repo.Textilefunction.ToList(),
+            //    Structure = repo.Structure.ToList(),
+            //    Burialmain = repo.Burialmain.ToList(),
+
+            //};
+
+            var numResults = 20;
+
+            var temp = repo.Burialmain
+                .ToList()
+                .Skip((pageNum - 1) * numResults)
+                .Take(numResults);
+
+            return View(temp);
         }
 
         public IActionResult SupervisedAnalysis()
         {
-            var modelPath = Path.Combine(_env.ContentRootPath, "Models", "mumyGenderModel.onnx");
-            var sessionOptions = new SessionOptions();
-            var session = new InferenceSession(modelPath, sessionOptions);
+            var temp = repo.Bodyanalysischart.ToList();
 
-            return View();
-        }
+            return View(temp);
 
         public IActionResult UnsupervisedAnalysis()
         {

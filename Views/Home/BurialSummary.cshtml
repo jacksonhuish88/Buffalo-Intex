@@ -2,7 +2,51 @@
     ViewData["Title"] = "Burial Summary";
 }
 
+@model IEnumerable<Burialmain>
+
 <div class="text-center">
-    <h1 class="display-4">This is the Burial Summary Page</h1>
-    <p>Include ALL burial information</p>
+    <h1 class="display-4">Burial Summary Page</h1>
+    <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
 </div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Burial ID</td>
+            <td>Sex</td>
+            <td>Burial Depth</td>
+            <td>Age at Death</td>
+            <td>Head Direction</td>
+            <td>Hair Color</td>
+            <td>Preservation</td>
+            <td>Goods</td>
+            <td>Text</td>
+            <td>Photos</td>
+        </tr>
+    </thead>
+
+    <tbody>
+            @foreach (Burialmain bm in Model)
+            {
+                <tr>
+                    <td>@bm.Burialid</td>
+                    <td>@bm.Sex</td>
+                    <td>@bm.Depth</td>
+                    <td>@bm.Ageatdeath</td>
+                    <td>@bm.Headdirection</td>
+                    <td>@bm.Haircolor</td>
+                    <td>@bm.Preservation</td>
+                    <td>@bm.Goods</td>
+                    <td>@bm.Text</td>
+                    <td>@bm.Photos</td>
+                </tr>
+
+            }
+    </tbody>
+</table>
+
+<a asp-action="BurialSummary" asp-route-pageNum="1">1</a>
+<a asp-action="BurialSummary" asp-route-pageNum="2">2</a>
+<a asp-action="BurialSummary" asp-route-pageNum="3">3</a>
+
+<div page-model=""></div>
