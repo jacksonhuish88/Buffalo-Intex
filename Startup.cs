@@ -36,6 +36,10 @@ namespace Buffalo_Intex
                 .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            // may need this for the onnx file to run
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("Model/mummyGenderModel.onnx"
+            //    );
 
 
             services.AddAuthentication().AddGoogle(googleOptions =>
