@@ -17,7 +17,6 @@ namespace Buffalo_Intex.Controllers
         private IMummyRepository repo;
 
         private readonly ILogger<HomeController> _logger;
-        private readonly IWebHostEnvironment _env;
 
         public HomeController(ILogger<HomeController> logger, IMummyRepository temp)
         {
@@ -62,6 +61,8 @@ namespace Buffalo_Intex.Controllers
             var temp = repo.Bodyanalysischart.ToList();
 
             return View(temp);
+
+        }
 
         public IActionResult UnsupervisedAnalysis()
         {
