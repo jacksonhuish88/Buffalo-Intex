@@ -1,24 +1,26 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
+
 
 namespace Buffalo_Intex.Models
 {
-    public class MummyDbContext : DbContext
+    public class MummyDbContext : IdentityDbContext<IdentityUser>
     {
-        public MummyDbContext()
+        public MummyDbContext(DbContextOptions<MummyDbContext> options) : base(options)
         {
         }
 
-        public MummyDbContext(DbContextOptions<MummyDbContext> options)
-            : base(options)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
         }
+
 
         public DbSet<Analysis> Analysis { get; set; }
         public DbSet<AnalysisTextile> AnalysisTextile { get; set; }
@@ -57,4 +59,5 @@ namespace Buffalo_Intex.Models
         public DbSet<YarnmanipulationTextile> YarnmanipulationTextile { get; set; }
 
     }
+
 }

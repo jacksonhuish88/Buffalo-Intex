@@ -36,10 +36,25 @@ namespace Buffalo_Intex
                 .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.Configure<CookiePolicyOptions>(opt =>
+            services.Configure<IdentityOptions>(options =>
             {
-                opt.ConsentCookie.Name = "ConsentCookie";
-                opt.CheckConsentNeeded = context => true;
+                // Makes Password require 3 Unique characters and 12 totalcharacters
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 12;
+                options.Password.RequiredUniqueChars = 3;
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+
             });
 
             // may need this for the onnx file to run
@@ -48,11 +63,11 @@ namespace Buffalo_Intex
             //    );
 
 
-            ////services.AddAuthentication().AddGoogle(googleOptions =>
-            ////{
-            ////    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-            ////    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            ////});
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = "154105035584-6u136ig8d72ebe57iaat36jqip8j5vpt.apps.googleusercontent.com"; //Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = "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"; // Configuration["Authentication:Google:ClientSecret"];
+            });
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
         }
