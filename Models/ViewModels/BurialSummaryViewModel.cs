@@ -5,7 +5,7 @@ namespace Buffalo_Intex.Models.ViewModels
 {
     public class BurialSummaryViewModel
     {
-
+        public PageInfo PageInfo { get; set; }
         public IQueryable<Color> Color { get; set; }
 
         public IQueryable<Textilefunction> Textilefunction { get; set; }

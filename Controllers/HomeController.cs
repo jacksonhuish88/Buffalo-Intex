@@ -48,12 +48,22 @@ namespace Buffalo_Intex.Controllers
 
             var numResults = 20;
 
-            var temp = repo.Burialmain
+            var x = new BurialSummaryViewModel
+            {
+                Burialmain = (IQueryable<Burialmain>)repo.Burialmain
                 .ToList()
                 .Skip((pageNum - 1) * numResults)
-                .Take(numResults);
+                .Take(numResults),
 
-            return View(temp);
+                PageInfo = new PageInfo
+                {
+                    TotalNumMummy = repo.Burialmain.Count(),
+                    MummyPerPage = numResults,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(x);
         }
 
         public IActionResult SupervisedAnalysis()
