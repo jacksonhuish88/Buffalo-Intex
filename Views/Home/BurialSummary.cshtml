@@ -2,7 +2,6 @@
     ViewData["Title"] = "Burial Summary";
 }
 
-@model BurialSummaryViewModel
 
 <div class="text-center">
     <h1 class="display-4">Burial Summary Page</h1>
@@ -25,28 +24,5 @@
         </tr>
     </thead>
 
-    <tbody>
-            @foreach (Burialmain bm in Model.Burialmain)
-            {
-                <tr>
-                    <td>@bm.Burialid</td>
-                    <td>@bm.Sex</td>
-                    <td>@bm.Depth</td>
-                    <td>@bm.Ageatdeath</td>
-                    <td>@bm.Headdirection</td>
-                    <td>@bm.Haircolor</td>
-                    <td>@bm.Preservation</td>
-                    <td>@bm.Goods</td>
-                    <td>@bm.Text</td>
-                    <td>@bm.Photos</td>
-                </tr>
-
-            }
-    </tbody>
 </table>
 
-<a asp-action="BurialSummary" asp-route-pageNum="1">1</a>
-<a asp-action="BurialSummary" asp-route-pageNum="2">2</a>
-<a asp-action="BurialSummary" asp-route-pageNum="3">3</a>
-
-<div page-model="@Model.PageInfo" page-action="BurialSummary"></div>

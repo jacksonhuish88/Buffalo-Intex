@@ -1,5 +1,3 @@
-using Buffalo_Intex.Data;
-using Buffalo_Intex.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,11 +26,6 @@ namespace Buffalo_Intex
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MummyDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("MummyDb")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.Configure<IdentityOptions>(options =>
@@ -45,6 +38,12 @@ namespace Buffalo_Intex
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 3;
             });
+
+            services.AddDbContext<MummyDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("MummyDb")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<MummyDbContext>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -68,7 +67,7 @@ namespace Buffalo_Intex
                 googleOptions.ClientSecret = "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"; // Configuration["Authentication:Google:ClientSecret"];
             });
 
-            services.AddScoped<IMummyRepository, EFMummyRepository>();
+            // services.AddScoped<IMummyRepository, EFMummyRepository>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,3 +101,10 @@ namespace Buffalo_Intex
         }
     }
 }
+
+
+//services.AddDbContext<MummyDbContext>(options =>
+//    options.UseNpgsql(
+//        Configuration.GetConnectionString("MummyDb")));
+//services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<MummyDbContext>();

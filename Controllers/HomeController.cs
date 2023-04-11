@@ -1,6 +1,4 @@
-﻿using Buffalo_Intex.Models;
-using Buffalo_Intex.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using System;
@@ -14,14 +12,13 @@ namespace Buffalo_Intex.Controllers
 {
     public class HomeController : Controller
     {
-        private IMummyRepository repo;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IMummyRepository temp)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            repo = temp;
+
         }
 
         public IActionResult Index()
@@ -34,36 +31,9 @@ namespace Buffalo_Intex.Controllers
             return View();
         }
 
-        public IActionResult BurialSummary(int pageNum = 1)
+        public IActionResult BurialSummary()
         {
-            //var tables = new BurialSummaryViewModel
-            //{
-            //    Color = repo.Color.ToList(),
-            //    Bodyanalysischart = repo.Bodyanalysischart.ToList(),
-            //    Textilefunction = repo.Textilefunction.ToList(),
-            //    Structure = repo.Structure.ToList(),
-            //    Burialmain = repo.Burialmain.ToList(),
-
-            //};
-
-            var numResults = 20;
-
-            var x = new BurialSummaryViewModel
-            {
-                Burialmain = (IQueryable<Burialmain>)repo.Burialmain
-                .ToList()
-                .Skip((pageNum - 1) * numResults)
-                .Take(numResults),
-
-                PageInfo = new PageInfo
-                {
-                    TotalNumMummy = repo.Burialmain.Count(),
-                    MummyPerPage = numResults,
-                    CurrentPage = pageNum
-                }
-            };
-
-            return View(x);
+            return View();
         }
 
         public IActionResult SupervisedAnalysis()
@@ -80,13 +50,6 @@ namespace Buffalo_Intex.Controllers
         public IActionResult RegistrationConfirmation()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
