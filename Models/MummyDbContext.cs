@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Buffalo_Intex.Models
 {
-    public class MummyDbContext : DbContext
-    { 
-        public MummyDbContext(DbContextOptions<MummyDbContext> options): base(options)
+    public class MummyDbContext : IdentityDbContext<IdentityUser>
+    {
+        public MummyDbContext(DbContextOptions<MummyDbContext> options) : base(options)
         {
         }
 
