@@ -2,6 +2,7 @@ using Buffalo_Intex.Data;
 using Buffalo_Intex.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -35,6 +36,12 @@ namespace Buffalo_Intex
                 .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.Configure<CookiePolicyOptions>(opt =>
+            {
+                opt.ConsentCookie.Name = "ConsentCookie";
+                opt.CheckConsentNeeded = context => true;
+            });
+
             // may need this for the onnx file to run
             //services.AddSingleton<InferenceSession>(
             //    new InferenceSession("Model/mummyGenderModel.onnx"
@@ -53,6 +60,7 @@ namespace Buffalo_Intex
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+    
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -67,10 +75,9 @@ namespace Buffalo_Intex
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCookiePolicy();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
