@@ -8,7 +8,6 @@ namespace Buffalo_Intex.Models
         IQueryable<Color> Color { get; }
 
         IQueryable<Textilefunction> Textilefunction { get; }
-
         IQueryable<Burialmain> Burialmain { get; }
 
         IQueryable<Bodyanalysischart> Bodyanalysischart { get; }

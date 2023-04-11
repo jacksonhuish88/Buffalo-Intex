@@ -14,6 +14,7 @@ namespace Buffalo_Intex.Controllers
 {
     public class HomeController : Controller
     {
+
         private IMummyRepository repo;
 
         private readonly ILogger<HomeController> _logger;
@@ -36,32 +37,27 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult BurialSummary(int pageNum = 1)
         {
-            //var tables = new BurialSummaryViewModel
-            //{
-            //    Color = repo.Color.ToList(),
-            //    Bodyanalysischart = repo.Bodyanalysischart.ToList(),
-            //    Textilefunction = repo.Textilefunction.ToList(),
-            //    Structure = repo.Structure.ToList(),
-            //    Burialmain = repo.Burialmain.ToList(),
-
-            //};
-
             var numResults = 20;
 
-            var x = new BurialSummaryViewModel
-            {
-                Burialmain = (IQueryable<Burialmain>)repo.Burialmain
+            //var x = new BurialSummaryViewModel
+            //{
+            //    Burialmain = (IQueryable<Burialmain>)repo.Burialmain
+            //    .ToList()
+            //    .Skip((pageNum - 1) * numResults)
+            //    .Take(numResults),
+
+            //    PageInfo = new PageInfo
+            //    {
+            //        TotalNumMummy = repo.Burialmain.Count(),
+            //        MummyPerPage = numResults,
+            //        CurrentPage = pageNum
+            //    }
+            //};
+
+            var x = repo.Burialmain
                 .ToList()
                 .Skip((pageNum - 1) * numResults)
-                .Take(numResults),
-
-                PageInfo = new PageInfo
-                {
-                    TotalNumMummy = repo.Burialmain.Count(),
-                    MummyPerPage = numResults,
-                    CurrentPage = pageNum
-                }
-            };
+                .Take(numResults);
 
             return View(x);
         }
@@ -78,6 +74,12 @@ namespace Buffalo_Intex.Controllers
         }
 
         public IActionResult RegistrationConfirmation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminCRUD()
         {
             return View();
         }
