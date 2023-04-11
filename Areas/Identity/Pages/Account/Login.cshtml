@@ -1,0 +1,78 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h2 style="color:gold" class="text-center">Login</h2>
+
+<div>
+    <form id="account" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div style="margin-left:34%;margin-top:50px;">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label asp-for="Input.Email" class="myLabel"></label>
+                <input asp-for="Input.Email" class="form-control myInput" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="color: white; margin-bottom: 15px">
+                <label asp-for="Input.Password" class="myLabel"></label>
+                <input asp-for="Input.Password" class="form-control myInput" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div style="margin-left:100px; padding-top:8;">
+                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="myLabelCheck" style="padding-top:12px">
+                            <input asp-for="Input.RememberMe" class="myInputCheck" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+            </div>
+            <div class="form-group" style="margin-left:192px;padding-top:8px">
+                <a id="forgot-password" asp-page="./ForgotPassword" style="padding-bottom:8px;color:gold">Forgot your password?</a>
+                <br />
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="padding-bottom:5px; color:gold">Register as a new user</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<section style="margin-top:25px" class="text-center">
+    <h4 style="color:white; font-size:18px">Sign in with Google</h4>
+    @{
+        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+        {
+            <div>
+                <p>
+                    There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                    for details on setting up this ASP.NET application to support logging in via external services.
+                </p>
+            </div>
+        }
+        else
+        {
+            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        @foreach (var provider in Model.ExternalLogins)
+                        {
+
+                            <img src="~/img/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png" width="36" />
+                            <button type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account" style="border-radius:5px 5px 5px">@provider.DisplayName</button>
+                        }
+                    </p>
+                </div>
+            </form>
+        }
+    }
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

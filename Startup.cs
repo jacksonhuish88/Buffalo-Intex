@@ -35,9 +35,19 @@ namespace Buffalo_Intex
                 .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddScoped<IMummyRepository, EFMummyRepository>();
-        }
+            // may need this for the onnx file to run
+            //services.AddSingleton<InferenceSession>(
+            //    new InferenceSession("Model/mummyGenderModel.onnx"
+            //    );
 
+
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -54,7 +64,6 @@ namespace Buffalo_Intex
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
