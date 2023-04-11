@@ -35,6 +35,7 @@ namespace Buffalo_Intex
                 .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IMummyRepository, EFMummyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
