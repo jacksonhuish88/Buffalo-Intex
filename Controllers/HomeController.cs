@@ -50,7 +50,7 @@ namespace Buffalo_Intex.Controllers
 
             var x = new BurialSummaryViewModel
             {
-                Burialmain = (IQueryable<Burialmain>)repo.Burialmain
+                Burialmain = repo.Burialmain
                 .ToList()
                 .Skip((pageNum - 1) * numResults)
                 .Take(numResults),
