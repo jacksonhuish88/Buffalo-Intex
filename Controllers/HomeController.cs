@@ -50,7 +50,7 @@ namespace Buffalo_Intex.Controllers
 
             var x = new BurialSummaryViewModel
             {
-                Burialmain = repo.Burialmain
+                Burialmain = (IQueryable<Burialmain>)repo.Burialmain
                 .ToList()
                 .Skip((pageNum - 1) * numResults)
                 .Take(numResults),
@@ -68,9 +68,7 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult SupervisedAnalysis()
         {
-            var temp = repo.Bodyanalysischart.ToList();
-
-            return View(temp);
+            return View();
 
         }
 
