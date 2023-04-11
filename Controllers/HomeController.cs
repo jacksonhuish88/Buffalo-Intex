@@ -1,5 +1,6 @@
 ﻿using Buffalo_Intex.Models;
 using Buffalo_Intex.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -78,7 +79,7 @@ namespace Buffalo_Intex.Controllers
             return View();
         }
 
-        [HttpPost]
+        [Authorize]
         public IActionResult AdminCRUD()
         {
             return View();

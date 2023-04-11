@@ -70,6 +70,7 @@ namespace Buffalo_Intex
             });
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
+
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,6 +101,7 @@ namespace Buffalo_Intex
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }
