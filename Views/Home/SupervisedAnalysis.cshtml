@@ -2,41 +2,48 @@
     ViewData["Title"] = "Supervised Analysis";
 }
 
-@model List<Bodyanalysischart>
-
 <div class="text-center">
     <h1 class="display-4">This is the Supervised Analyis Page</h1>
     <p>Adult Supervision Required</p>
 </div>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <td>Subpubic Angle</td>
-            <td>Sciatic Notch</td>
-            <td>Femur</td>
-            <td>Femur Head Diameter</td>
-            <td>Femur Length</td>
-            <td>Humerus</td>
-            <td>Humerus Head Diameter</td>
-            <td>Humerus Length</td>
-        </tr>
-    </thead>
 
-    <tbody>
-        <tr>
-            @foreach (Bodyanalysischart b in Model)
-            {
-                <td>@b.Subpubicangle</td>
-                <td>@b.Sciaticnotch</td>
-                <td>@b.Femur</td>
-                <td>@b.Femurheaddiameter</td>
-                <td>@b.Femurlength</td>
-                <td>@b.Humerus</td>
-                <td>@b.Humerusheaddiameter</td>
-                <td>@b.Humeruslength</td>
-            }
-        </tr>
-    </tbody>
-</table>
+<div class="row text-center">
+    <div class="col-5">
+        <h4>Fill out the form to predict if your mummy a male, female or other LGBTQ+ gender</h4>
+        <form id="account" method="post">
+            <div style="margin-left:10%;margin-top:42px;">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                    <label for="Burialmain." class="myLabel">One 1</label>
+                    <input for="Burialmain" class="form-control myInput" />
+                    <!-- <span asp-validation-for="Burialmain" class="text-danger"></span> -->
+                </div>
+                <div class="form-group" style="color: white; margin-bottom: 15px">
+                    <label for="Somethin2" class="myLabel">Something2</label>
+                    <input for="Something2" class="form-control myInput" />
+                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
+                </div>
+                <div class="form-group" style="color: white; margin-bottom: 15px">
+                    <label for="BonLength" class="myLabel">Bone Length</label>
+                    <input for="Bonelength" class="form-control myInput" />
+                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
+                </div>
+                <div class="form-group" style="color: white; margin-bottom: 15px">
+                    <label for="HeadOrientation" class="myLabel">Head Orientation</label>
+                    <input for="HeadOrientation" class="form-control myInput" />
+                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:12px;">Submit Information</button>
+        </form>
+    </div>
 
+    <div class="col-7">
+        <h4>
+            Fill out the form to see if your mummy is a boy or girl<span className="dotOne"> . </span>
+            <span className="dotTwo"> . </span>
+            <span className="dotThree"> . </span>
+        </h4>
+    </div>
+</div>
