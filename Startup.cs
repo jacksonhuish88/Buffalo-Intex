@@ -98,6 +98,7 @@ namespace Buffalo_Intex
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }
