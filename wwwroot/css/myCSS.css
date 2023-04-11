@@ -25,7 +25,10 @@ h2{
     font-size:64px;
 }
 
-
+.formInputs {
+    align-content:center;
+    justify-content: center;
+}
 .mynav-link{
     color:white
 }
@@ -48,12 +51,27 @@ cursor: pointer;
     width: 85px;
     text-align: right;
     font-weight: bold;
-    padding-top: 6px;
     padding-right:25px;
     width:175px;
+    font-size:18px;
 }
 
 .myInput {
-    width: 250px;
-    height: 24px;
+    width: 275px;
+    height: 32px;
+}
+
+.myLabelCheck {
+    float: left;
+    width: 50px;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 25px;
+    width: 175px;
+    font-size: 18px;
+}
+
+.myInputCheck {
+    width: 24px;
+    height: 20px;
 }

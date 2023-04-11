@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -53,9 +54,9 @@ namespace Buffalo_Intex.Models
         public virtual DbSet<Textilefunction> Textilefunction { get; set; }
         public virtual DbSet<TextilefunctionTextile> TextilefunctionTextile { get; set; }
         public virtual DbSet<Yarnmanipulation> Yarnmanipulation { get; set; }
-        public virtual DbSet<YarnmanipulationTextile> YarnmanipulationTextile { get; set; }
+        public virtual DbSet<YarnmanipulationTextile> YarnmanipulationTextile { get; set; }    
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
