@@ -25,6 +25,15 @@ h2{
     font-size:64px;
 }
 
+h4{
+    font-size: 24px;
+    color:white;
+}
+
+p{
+    color:white;
+}
+
 .formInputs {
     align-content:center;
     justify-content: center;
@@ -74,4 +83,54 @@ cursor: pointer;
 .myInputCheck {
     width: 24px;
     height: 20px;
+}
+
+.btn-primary{
+    background-color:gold;
+    color:black;
+    border-color:black;
+}
+
+.btn-primary:hover {
+    background-color: darkgoldenrod;
+    border-color: black;
+    cursor: pointer;
+}
+
+.btn-primary:active,btn-primary:focus {
+background-color: darkgoldenrod;
+border-color: black;
+cursor: pointer;
+}
+
+/* WAITING TO START ANIMATIONS */
+.dotOne {
+    animation: fadeinout 2s ease-in-out infinite;
+    opacity: 0;
+}
+
+.dotTwo {
+    animation: fadeinout 2s ease-in-out infinite;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+.dotThree {
+    animation: fadeinout 2s ease-in-out infinite;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+@keyframes fadeinout {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
