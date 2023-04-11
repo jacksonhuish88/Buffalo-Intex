@@ -65,8 +65,8 @@ namespace Buffalo_Intex
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
-                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.ClientId = "154105035584-6u136ig8d72ebe57iaat36jqip8j5vpt.apps.googleusercontent.com"; //Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = "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"; // Configuration["Authentication:Google:ClientSecret"];
             });
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
