@@ -1,3 +1,4 @@
+using Buffalo_Intex.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -60,7 +61,7 @@ namespace Buffalo_Intex
                 googleOptions.ClientSecret = "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"; // Configuration["Authentication:Google:ClientSecret"];
             });
 
-            // services.AddScoped<IMummyRepository, EFMummyRepository>();
+            services.AddScoped<IMummyRepository, EFMummyRepository>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +90,23 @@ namespace Buffalo_Intex
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+            name: "Category-Page",
+            pattern: "{mummyCategory}/{pageNum}",
+            defaults: new { Controller = "Home", action = "BurialSummary" }
+            );
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "BurialSummary", pageNum = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "Category",
+                    pattern: "mummyCategory{mummyCategory}",
+                    defaults: new { Controller = "Home", action = "BurialSummary", pageNum = 1 }
+                    );
                 endpoints.MapRazorPages();
             });
 

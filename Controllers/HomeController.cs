@@ -6,20 +6,22 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Buffalo_Intex.Data.Repositories;
+using Buffalo_Intex.Models.ViewModels;
 
 namespace Buffalo_Intex.Controllers
 {
     public class HomeController : Controller
     {
 
-        private MummyDbContext context { get; set; }
+        private IMummyRepository repo { get; set; }
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, MummyDbContext temp)
+        public HomeController(ILogger<HomeController> logger, IMummyRepository temp)
         {
             _logger = logger;
-            context = temp;
+            repo = temp;
 
         }
 
@@ -33,10 +35,30 @@ namespace Buffalo_Intex.Controllers
             return View();
         }
 
-        public IActionResult BurialSummary()
+        public IActionResult BurialSummary(string mummyCategory, int pageNum=1)
         {
-            var data = context.Burialmain.ToList();
-            return View(data);
+            int pageSize = 10;
+            var x = new MummyViewModel
+            {
+                // CALL AND ORDER BOOK REPO
+                Burialmain = repo.Burialmain
+                .Where(m => m.Depth == mummyCategory || mummyCategory == null) // Change this to be one of the filters
+                .OrderBy(b => b.Sex)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                // ESTABLISH BOOK PAGE INFO 
+                PageInfo = new PageInfo
+                {
+                    TotalNumMummies =
+                        (mummyCategory == null
+                            ? repo.Burialmain.Count()
+                            : repo.Burialmain.Where(x => x.Depth == mummyCategory).Count()), // Depth should be a category filter
+                    MummiesPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+            return View(x);
         }
 
         public IActionResult SupervisedAnalysis()
