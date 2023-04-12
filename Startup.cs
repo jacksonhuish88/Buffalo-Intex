@@ -85,6 +85,11 @@ namespace Buffalo_Intex
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+                await next();
+            });
             app.UseCookiePolicy();
             app.UseEndpoints(endpoints =>
             {
