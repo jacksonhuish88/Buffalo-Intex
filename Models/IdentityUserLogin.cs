@@ -8,14 +8,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Buffalo_Intex
 {
-    public partial class Artifactfagelgamousregister
+    public class IdentityUserLogin
     {
         [Key]
-        [Required]
-        public long Id { get; set; }
-        public string Registernum { get; set; }
-        public string Photographed { get; set; }
-        public string Notes { get; set; }
-        public string Coordinateset { get; set; }
+        public string LoginProvider { get; set; }
+        [Key]
+        public string ProviderKey { get; set; }
+        [Key]
+        public string UserId { get; set; }
+
+        // Other properties and methods
     }
+
 }

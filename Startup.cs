@@ -42,24 +42,17 @@ namespace Buffalo_Intex
             services.AddDbContext<MummyDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyDb")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<MummyDbContext>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential 
-                // cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
 
                 options.MinimumSameSitePolicy = SameSiteMode.None;
 
             });
-
-            // may need this for the onnx file to run
-            //services.AddSingleton<InferenceSession>(
-            //    new InferenceSession("Model/mummyGenderModel.onnx"
-            //    );
-
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {

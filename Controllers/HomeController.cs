@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,11 +12,14 @@ namespace Buffalo_Intex.Controllers
     public class HomeController : Controller
     {
 
+        private MummyDbContext context { get; set; }
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MummyDbContext temp)
         {
             _logger = logger;
+            context = temp;
 
         }
 
@@ -33,7 +35,8 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult BurialSummary()
         {
-            return View();
+            var data = context.Burialmain.ToList();
+            return View(data);
         }
 
         public IActionResult SupervisedAnalysis()
