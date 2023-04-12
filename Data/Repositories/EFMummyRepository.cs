@@ -17,6 +17,7 @@ namespace Buffalo_Intex.Data.Repositories
         //IQueryable<Bodyanalysischart> Bodyanalysischarts { get; }
         //IQueryable<Books> Books { get; }
         IQueryable<Burialmain> Burialmain { get; }
+        IQueryable<Textile> Textiles { get; }
 
         //IQueryable<BurialmainBiological> BurialmainBiologicals { get; }
         //IQueryable<BurialmainBodyanalysischart> BurialmainBodyanalysischarts { get; }

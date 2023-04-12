@@ -66,7 +66,7 @@ namespace Buffalo_Intex.Data.Repositories
 
         //public IQueryable<Teammember> Teammembers => Context.Teammember;
 
-        //public IQueryable<Textile> Textiles => Context.Textile;
+        public IQueryable<Textile> Textiles => Context.Textile;
 
         //public IQueryable<Textilefunction> TextilesFunctions => Context.Textilefunction;
 

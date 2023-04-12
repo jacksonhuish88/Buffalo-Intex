@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,7 @@ namespace Buffalo_Intex
         //public virtual DbSet<Bodyanalysischart> Bodyanalysischart { get; set; }
         //public virtual DbSet<Books> Books { get; set; }
         public DbSet<Burialmain> Burialmain { get; set; }
+        public IQueryable<Textile> Textile { get; internal set; }
 
         //public virtual DbSet<BurialmainBiological> BurialmainBiological { get; set; }
         //public virtual DbSet<BurialmainBodyanalysischart> BurialmainBodyanalysischart { get; set; }
