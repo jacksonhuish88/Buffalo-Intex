@@ -2,13 +2,29 @@
     ViewData["Title"] = "Burial Summary";
 }
 
-@model IQueryable<Burialmain>
+@model MummyViewModel
 
 <div class="text-center">
     <h1 class="display-4">Burial Summary Page</h1>
     <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
 </div>
 
+@foreach (var b in Model.Burialmain)
+{
+    <partial name="MummySummary" model="b" />
+}
+
+<!-- PAGE BUTTON INFO -->
+<center>
+    <div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-outline-dark"
+         page-class-selected="btn-primary" class="btn-group pull-right m-1">
+    </div>
+</center>
+
+
+
+<!--
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -25,22 +41,5 @@
         </tr>
     </thead>
 
-    <tbody>
-            @foreach (Burialmain bm in Model)
-            {
-                <tr>
-                    <td>@bm.Burialid</td>
-                    <td>@bm.Sex</td>
-                    <td>@bm.Depth</td>
-                    <td>@bm.Ageatdeath</td>
-                    <td>@bm.Headdirection</td>
-                    <td>@bm.Haircolor</td>
-                    <td>@bm.Preservation</td>
-                    <td>@bm.Goods</td>
-                    <td>@bm.Text</td>
-                    <td>@bm.Photos</td>
-                </tr>
-
-            }
-    </tbody>
 </table>
+-->

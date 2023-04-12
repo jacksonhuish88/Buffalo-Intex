@@ -4,47 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Buffalo_Intex.Migrations
 {
-    public partial class AddIdentityUserLogin1 : Migration
+    public partial class SomethingHere : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_IdentityUserLogin<string>",
-                table: "IdentityUserLogin<string>");
-
-            migrationBuilder.RenameTable(
-                name: "IdentityUserLogin<string>",
-                newName: "AspNetUserLogins");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "AspNetUserLogins",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "ProviderKey",
-                table: "AspNetUserLogins",
-                maxLength: 128,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "LoginProvider",
-                table: "AspNetUserLogins",
-                maxLength: 128,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_AspNetUserLogins",
-                table: "AspNetUserLogins",
-                columns: new[] { "LoginProvider", "ProviderKey" });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -85,6 +48,52 @@ namespace Buffalo_Intex.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Burialmain",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Squarenorthsouth = table.Column<string>(nullable: true),
+                    Headdirection = table.Column<string>(nullable: true),
+                    Sex = table.Column<string>(nullable: true),
+                    Northsouth = table.Column<string>(nullable: true),
+                    Depth = table.Column<string>(nullable: true),
+                    Eastwest = table.Column<string>(nullable: true),
+                    Adultsubadult = table.Column<string>(nullable: true),
+                    Facebundles = table.Column<string>(nullable: true),
+                    Southtohead = table.Column<string>(nullable: true),
+                    Preservation = table.Column<string>(nullable: true),
+                    Fieldbookpage = table.Column<string>(nullable: true),
+                    Squareeastwest = table.Column<string>(nullable: true),
+                    Goods = table.Column<string>(nullable: true),
+                    Text = table.Column<string>(nullable: true),
+                    Wrapping = table.Column<string>(nullable: true),
+                    Haircolor = table.Column<string>(nullable: true),
+                    Westtohead = table.Column<string>(nullable: true),
+                    Samplescollected = table.Column<string>(nullable: true),
+                    Area = table.Column<string>(nullable: true),
+                    Burialid = table.Column<long>(nullable: true),
+                    Length = table.Column<string>(nullable: true),
+                    Burialnumber = table.Column<string>(nullable: true),
+                    Dataexpertinitials = table.Column<string>(nullable: true),
+                    Westtofeet = table.Column<string>(nullable: true),
+                    Ageatdeath = table.Column<string>(nullable: true),
+                    Southtofeet = table.Column<string>(nullable: true),
+                    Excavationrecorder = table.Column<string>(nullable: true),
+                    Photos = table.Column<string>(nullable: true),
+                    Hair = table.Column<string>(nullable: true),
+                    Burialmaterials = table.Column<string>(nullable: true),
+                    Dateofexcavation = table.Column<DateTime>(nullable: true),
+                    Fieldbookexcavationyear = table.Column<string>(nullable: true),
+                    Clusternumber = table.Column<string>(nullable: true),
+                    Shaftnumber = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Burialmain", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -120,6 +129,26 @@ namespace Buffalo_Intex.Migrations
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -171,11 +200,6 @@ namespace Buffalo_Intex.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -189,6 +213,11 @@ namespace Buffalo_Intex.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
                 table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -206,27 +235,18 @@ namespace Buffalo_Intex.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                table: "AspNetUserLogins");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
                 name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
 
             migrationBuilder.DropTable(
                 name: "AspNetUserRoles");
@@ -235,50 +255,13 @@ namespace Buffalo_Intex.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Burialmain");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_AspNetUserLogins",
-                table: "AspNetUserLogins");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins");
-
-            migrationBuilder.RenameTable(
-                name: "AspNetUserLogins",
-                newName: "IdentityUserLogin<string>");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "IdentityUserLogin<string>",
-                type: "text",
-                nullable: true,
-                oldClrType: typeof(string));
-
-            migrationBuilder.AlterColumn<string>(
-                name: "ProviderKey",
-                table: "IdentityUserLogin<string>",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 128);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "LoginProvider",
-                table: "IdentityUserLogin<string>",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 128);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_IdentityUserLogin<string>",
-                table: "IdentityUserLogin<string>",
-                columns: new[] { "LoginProvider", "ProviderKey" });
         }
     }
 }

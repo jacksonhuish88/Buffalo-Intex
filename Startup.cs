@@ -1,5 +1,4 @@
-using Buffalo_Intex.Data;
-using Buffalo_Intex.Models;
+using Buffalo_Intex.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,21 +18,15 @@ namespace Buffalo_Intex
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        }   
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MummyDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("MummyDb")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MummyDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.Configure<IdentityOptions>(options =>
@@ -47,21 +40,20 @@ namespace Buffalo_Intex
                 options.Password.RequiredUniqueChars = 3;
             });
 
+            services.AddDbContext<MummyDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("MummyDb")));
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<MummyDbContext>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential 
-                // cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
 
                 options.MinimumSameSitePolicy = SameSiteMode.None;
 
             });
-
-            // may need this for the onnx file to run
-            //services.AddSingleton<InferenceSession>(
-            //    new InferenceSession("Model/mummyGenderModel.onnx"
-            //    );
-
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
@@ -70,7 +62,6 @@ namespace Buffalo_Intex
             });
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
-
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,9 +90,33 @@ namespace Buffalo_Intex
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+            name: "Category-Page",
+            pattern: "{mummyCategory}/{pageNum}",
+            defaults: new { Controller = "Home", action = "BurialSummary" }
+            );
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "BurialSummary", pageNum = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "Category",
+                    pattern: "mummyCategory{mummyCategory}",
+                    defaults: new { Controller = "Home", action = "BurialSummary", pageNum = 1 }
+                    );
                 endpoints.MapRazorPages();
             });
 
         }
     }
 }
+
+
+//services.AddDbContext<MummyDbContext>(options =>
+//    options.UseNpgsql(
+//        Configuration.GetConnectionString("MummyDb")));
+//services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<MummyDbContext>();

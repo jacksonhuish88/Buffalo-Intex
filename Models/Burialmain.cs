@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 // If you have enabled NRTs for your project, then un-comment the following line:
 #nullable enable
 
-namespace Buffalo_Intex.Models
+namespace Buffalo_Intex
 {
     public partial class Burialmain
     {

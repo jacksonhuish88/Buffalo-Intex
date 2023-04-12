@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
 
-
-namespace Buffalo_Intex.Models
+namespace Buffalo_Intex
 {
     public class MummyDbContext : IdentityDbContext<IdentityUser>
     {
@@ -21,43 +23,41 @@ namespace Buffalo_Intex.Models
             modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
         }
 
-
-        public DbSet<Analysis> Analysis { get; set; }
-        public DbSet<AnalysisTextile> AnalysisTextile { get; set; }
-        public DbSet<Artifactfagelgamousregister> Artifactfagelgamousregister { get; set; }
-        public DbSet<ArtifactfagelgamousregisterBurialmain> ArtifactfagelgamousregisterBurialmain { get; set; }
-        public DbSet<Artifactkomaushimregister> Artifactkomaushimregister { get; set; }
-        public DbSet<ArtifactkomaushimregisterBurialmain> ArtifactkomaushimregisterBurialmain { get; set; }
-        public DbSet<Biological> Biological { get; set; }
-        public DbSet<BiologicalC14> BiologicalC14 { get; set; }
-        public DbSet<Bodyanalysischart> Bodyanalysischart { get; set; }
-        public DbSet<Books> Books { get; set; }
+        //public virtual DbSet<Analysis> Analysis { get; set; }
+        //public virtual DbSet<AnalysisTextile> AnalysisTextile { get; set; }
+        //public virtual DbSet<Artifactfagelgamousregister> Artifactfagelgamousregister { get; set; }
+        //public virtual DbSet<ArtifactfagelgamousregisterBurialmain> ArtifactfagelgamousregisterBurialmain { get; set; }
+        //public virtual DbSet<Artifactkomaushimregister> Artifactkomaushimregister { get; set; }
+        //public virtual DbSet<ArtifactkomaushimregisterBurialmain> ArtifactkomaushimregisterBurialmain { get; set; }
+        //public virtual DbSet<Biological> Biological { get; set; }
+        //public virtual DbSet<BiologicalC14> BiologicalC14 { get; set; }
+        //public virtual DbSet<Bodyanalysischart> Bodyanalysischart { get; set; }
+        //public virtual DbSet<Books> Books { get; set; }
         public DbSet<Burialmain> Burialmain { get; set; }
-        public DbSet<BurialmainBiological> BurialmainBiological { get; set; }
-        public DbSet<BurialmainBodyanalysischart> BurialmainBodyanalysischart { get; set; }
-        public DbSet<BurialmainCranium> BurialmainCranium { get; set; }
-        public DbSet<BurialmainTextile> BurialmainTextile { get; set; }
-        public DbSet<C14> C14 { get; set; }
-        public DbSet<Color> Color { get; set; }
-        public DbSet<ColorTextile> ColorTextile { get; set; }
-        public DbSet<Cranium> Cranium { get; set; }
-        public DbSet<Decoration> Decoration { get; set; }
-        public DbSet<DecorationTextile> DecorationTextile { get; set; }
-        public DbSet<Dimension> Dimension { get; set; }
-        public DbSet<DimensionTextile> DimensionTextile { get; set; }
-        public DbSet<Newsarticle> Newsarticle { get; set; }
-        public DbSet<Photodata> Photodata { get; set; }
-        public DbSet<PhotodataTextile> PhotodataTextile { get; set; }
-        public DbSet<Photoform> Photoform { get; set; }
-        public DbSet<Structure> Structure { get; set; }
-        public DbSet<StructureTextile> StructureTextile { get; set; }
-        public DbSet<Teammember> Teammember { get; set; }
-        public DbSet<Textile> Textile { get; set; }
-        public DbSet<Textilefunction> Textilefunction { get; set; }
-        public DbSet<TextilefunctionTextile> TextilefunctionTextile { get; set; }
-        public DbSet<Yarnmanipulation> Yarnmanipulation { get; set; }
-        public DbSet<YarnmanipulationTextile> YarnmanipulationTextile { get; set; }
 
+        //public virtual DbSet<BurialmainBiological> BurialmainBiological { get; set; }
+        //public virtual DbSet<BurialmainBodyanalysischart> BurialmainBodyanalysischart { get; set; }
+        //public virtual DbSet<BurialmainCranium> BurialmainCranium { get; set; }
+        ////public virtual DbSet<BurialmainTextile> BurialmainTextile { get; set; }
+        //public virtual DbSet<C14> C14 { get; set; }
+        //public virtual DbSet<Color> Color { get; set; }
+        //public virtual DbSet<ColorTextile> ColorTextile { get; set; }
+        //public virtual DbSet<Cranium> Cranium { get; set; }
+        //public virtual DbSet<Decoration> Decoration { get; set; }
+        //public virtual DbSet<DecorationTextile> DecorationTextile { get; set; }
+        //public virtual DbSet<Dimension> Dimension { get; set; }
+        //public virtual DbSet<DimensionTextile> DimensionTextile { get; set; }
+        //public virtual DbSet<Newsarticle> Newsarticle { get; set; }
+        //public virtual DbSet<Photodata> Photodata { get; set; }
+        //public virtual DbSet<PhotodataTextile> PhotodataTextile { get; set; }
+        //public virtual DbSet<Photoform> Photoform { get; set; }
+        //public virtual DbSet<Structure> Structure { get; set; }
+        //public virtual DbSet<StructureTextile> StructureTextile { get; set; }
+        //public virtual DbSet<Teammember> Teammember { get; set; }
+        //public virtual DbSet<Textile> Textile { get; set; }
+        //public virtual DbSet<Textilefunction> Textilefunction { get; set; }
+        //public virtual DbSet<TextilefunctionTextile> TextilefunctionTextile { get; set; }
+        //public virtual DbSet<Yarnmanipulation> Yarnmanipulation { get; set; }
+        //public virtual DbSet<YarnmanipulationTextile> YarnmanipulationTextile { get; set; }
     }
-
 }
