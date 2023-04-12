@@ -12,14 +12,14 @@ namespace Buffalo_Intex.Controllers
     public class HomeController : Controller
     {
 
-        private MummyDbContext context { get; set; }
+        private MummyDbContext repo { get; set; }
 
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger, MummyDbContext temp)
         {
             _logger = logger;
-            context = temp;
+            repo = temp;
 
         }
 
@@ -35,8 +35,8 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult BurialSummary()
         {
-            var data = context.Burialmain.ToList();
-            return View(data);
+            // var data = repo.Burialmain.ToList();
+            return View();
         }
 
         public IActionResult SupervisedAnalysis()
