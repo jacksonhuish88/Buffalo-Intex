@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Buffalo_Intex.Migrations
 {
-    [DbContext(typeof(MummyDbContext))]
+    [DbContext(typeof(postgresContext))]
     [Migration("20230412001601_SomethingHere")]
     partial class SomethingHere
     {

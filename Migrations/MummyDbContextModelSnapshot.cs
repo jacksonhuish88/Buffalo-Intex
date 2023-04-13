@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Buffalo_Intex.Migrations
 {
-    [DbContext(typeof(MummyDbContext))]
+    [DbContext(typeof(postgresContext))]
     partial class MummyDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

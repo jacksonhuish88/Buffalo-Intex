@@ -7,12 +7,13 @@ using System.Collections.Generic;
 
 namespace Buffalo_Intex
 {
-    public partial class Artifactfagelgamousregister
+    public partial class AspNetUserClaims
     {
-        public long Id { get; set; }
-        public string Registernum { get; set; }
-        public string Photographed { get; set; }
-        public string Notes { get; set; }
-        public string Coordinateset { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+
+        public virtual AspNetUsers User { get; set; }
     }
 }

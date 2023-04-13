@@ -1,38 +1,215 @@
-﻿@{
-    ViewData["Title"] = "Burial Summary";
-}
-
-@model List<Burialmain>
+﻿@model BurialmainViewModel
 
 <div class="text-center">
     <h1 class="display-4">Burial Summary Page</h1>
     <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
 </div>
 
-@foreach (Burialmain bm in Model)
+@foreach (Burialmain b in Model.Burialmain)
 {
-    <h5>@bm.Id</h5>
-    <ul>
-        <li>@bm.Sex</li>
-        <li>@bm.Depth</li>
-    </ul>
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>
+                Square North South: @b.Squarenorthsouth
+                North South: @b.Northsouth
+                Square East West: @b.Squareeastwest
+                East West: @b.Eastwest
+                Area: @b.Area
+                Burial Number: @b.Burialnumber
+            </h4>
+        </div>
+        <div class="card-text p-1">@b.Sex</div>
+        <div class="card-text p-1">@b.Depth</div>
+        <div class="card-text p-1">@b.Length</div>
+        <div class="card-text p-1">@b.Ageatdeath</div>
+        <div class="card-text p-1">@b.Headdirection</div>
+        <div class="card-text p-1">@b.Haircolor</div>
+    </div>
 }
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <td>Burial ID</td>
-            <td>Sex</td>
-            <td>Burial Depth</td>
-            <td>Age at Death</td>
-            <td>Head Direction</td>
-            <td>Hair Color</td>
-            <td>Preservation</td>
-            <td>Goods</td>
-            <td>Text</td>
-            <td>Photos</td>
-        </tr>
-    </thead>
 
-</table>
 
+
+<!--
+
+<div class="text-center">
+    <h1 class="display-4">Burial Summary Page</h1>
+    <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
+</div>
+
+<h1>Burial Data</h1>
+
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">-->
+<!--second css element was adding a text shadow to the title to make it stand out-->
+<!--<h4 style="text-shadow: 1px 1px;">
+            @*Model.Squarenorthsouth, @Model.
+            <span class="badge badge-pill badge-primary" style="float: right">
+                <small>@Model.Price.ToString("c")</small>
+            </span>
+        </h4>
+    </div>
+    <div class="card-text p-1">@Model.Author</div>
+    <div class="card-text p-1">@Model.Publisher</div>
+    <div class="card-text p-1">@Model.Isbn</div>
+    <div class="card-text p-1">@Model.Classification</div>
+    <div class="card-text p-1">@Model.Category</div>
+    <div class="card-text p-1">@Model.PageCount</div>
+</div>-->
+@*<form asp-controller="Burial" asp-action="Index" method="get">
+        <div>
+            <label for="textileColor">Textile Color:</label>
+            <input type="text" name="textileColor" value="@Request.Query["textileColor"]" />
+        </div>
+        <div>
+            <label for="textileStructure">Textile Structure:</label>
+            <input type="text" name="textileStructure" value="@Request.Query["textileStructure"]" />
+        </div>
+        <div>
+            <label for="sex">Sex:</label>
+            <input type="text" name="sex" value="@Request.Query["sex"]" />
+        </div>
+        <div>
+            <label for="burialDepth">Burial Depth:</label>
+            <input type="number" name="burialDepth" value="@Request.Query["burialDepth"]" />
+        </div>
+        <div>
+            <label for="burialLength">Burial Length:</label>
+            <input type="number" name="burialLength" value="@Request.Query["burialLength"]" />
+        </div>
+        <div>
+            <label for="ageAtDeath">Age at Death:</label>
+            <input type="number" name="ageAtDeath" value="@Request.Query["ageAtDeath"]" />
+        </div>
+        <div>
+            <label for="headDirection">Head Direction:</label>
+            <input type="text" name="headDirection" value="@Request.Query["headDirection"]" />
+        </div>
+        <div>
+            <label for="squareNorthSouth">Square North-South:</label>
+            <input type="text" name="squareNorthSouth" value="@Request.Query["squareNorthSouth"]" />
+        </div>
+        <div>
+            <label for="northSouth">North-South:</label>
+            <input type="text" name="northSouth" value="@Request.Query["northSouth"]" />
+        </div>
+        <div>
+            <label for="squareEastWest">Square East-West:</label>
+            <input type="text" name="squareEastWest" value="@Request.Query["squareEastWest"]" />
+        </div>
+        <div>
+            <label for="eastWest">East-West:</label>
+            <input type="text" name="eastWest" value="@Request.Query["eastWest"]" />
+        </div>
+        <div>
+            <label for="area">Area:</label>
+            <input type="text" name="area" value="@Request.Query["area"]" />
+        </div>
+        <div>
+            <label for="burialNumber">Burial Number:</label>
+            <input type="text" name="burialNumber" value="@Request.Query["burialNumber"]" />
+        </div>
+        <div>
+            <label for="textileFunction">Textile Function:</label>
+            <input type="text" name="textileFunction" value="@Request.Query["textileFunction"]" />
+        </div>
+        <div>
+            <label for="hairColor">Hair Color:</label>
+            <input type="text" name="hairColor" value="@Request.Query["hairColor"]" />
+        </div>
+        <div>
+            <label for="colorValue">Color Value:</label>
+            <input type="text" name="colorValue" value="@Request.Query["colorValue"]" />
+        </div>
+        <div>
+            <label for="colorValue">Color Value:</label>
+            <input type="text" name="structureValue" value="@Request.Query["structureValue"]" />
+        </div>
+
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Burial Number</th>
+                <th>Sex</th>
+                <th>Age at Death</th>
+                <th>Textile Color</th>
+                <th>Textile Structure</th>
+                <th>Textile Function</th>
+                <th>Hair Color</th>
+                <th>Burial Depth</th>
+                <th>Burial Length</th>
+                <th>Head Direction</th>
+                <th>Square North-South</th>
+                <th>North-South</th>
+                <th>Square East-West</th>
+                <th>East-West</th>
+                <th>Area</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var burial in Model)
+            {
+                <tr>
+                    <td>@burial.BurialNumber</td>
+                    <td>@burial.Sex</td>
+                    <td>@burial.AgeAtDeath</td>
+                    <td>@burial.TextileColor</td>
+                    <td>@burial.TextileStructure</td>
+                    <td>@burial.TextileFunction</td>
+                    <td>@burial.HairColor</td>
+                    <td>@burial.BurialDepth</td>
+                    <td>@burial.BurialLength</td>
+                    <td>@burial.HeadDirection</td>
+                    <td>@burial.SquareNorthSouth</td>
+                    <td>@burial.NorthSouth</td>
+                    <td>@burial.SquareEastWest</td>
+                    <td>@burial.EastWest</td>
+                    <td>@burial.Area</td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+@*<div page-model="@Model.PageInfo" page-action="BurialSummary" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-outline-dark"
+         page-class-selected="btn-primary" class="btn-group pull-right m-1">
+    </div>*@
+
+@*@{
+        ViewData["Title"] = "Burial Summary";
+    }
+
+    @model List<Burialmain>
+
+    <div class="text-center">
+        <h1 class="display-4">Burial Summary Page</h1>
+        <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
+    </div>
+
+    @foreach (Burialmain bm in Model)
+    {
+        <h5>@bm.Id</h5>
+        <ul>
+            <li>@bm.Sex</li>
+            <li>@bm.Depth</li>
+        </ul>
+    }
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>Burial ID</td>
+                <td>Sex</td>
+                <td>Burial Depth</td>
+                <td>Age at Death</td>
+                <td>Head Direction</td>
+                <td>Hair Color</td>
+                <td>Preservation</td>
+                <td>Goods</td>
+                <td>Text</td>
+                <td>Photos</td>
+            </tr>
+        </thead>
+
+    </table>*@-->

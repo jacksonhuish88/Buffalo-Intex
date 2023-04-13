@@ -39,12 +39,12 @@ namespace Buffalo_Intex
                 options.Password.RequiredUniqueChars = 3;
             });
 
-            services.AddDbContext<MummyDbContext>(options =>
+            services.AddDbContext<postgresContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyDb")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MummyDbContext>();
+                .AddEntityFrameworkStores<postgresContext>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
