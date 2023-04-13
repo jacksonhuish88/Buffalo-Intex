@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<Buffalo_Intex.Burialmain>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Burial Summary";
 }
 
-<h1>Index</h1>
+<div class="text-center">
+    <h1 class="display-4">Burial Summary</h1>
+    <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
+    <p>
+        <a asp-action="Create" class="btn btn-primary" style="width:225px">Create New Mummy Record</a>
+    </p>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -91,9 +94,9 @@
                 @Html.DisplayFor(modelItem => item.Ageatdeath)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="edd">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="edd">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="edd">Delete</a>
             </td>
         </tr>
 }
@@ -108,21 +111,21 @@
                 @if (ViewBag.CurrentPage > 1)
                 {
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index", new { pageNum = ViewBag.CurrentPage - 1 })">Previous</a>
+                        <a class="page-link paginators" href="@Url.Action("Index", new { pageNum = ViewBag.CurrentPage - 1 })" >Previous</a>
                     </li>
                 }
 
                 @for (int i = 1; i <= ViewBag.TotalPages; i++)
                 {
                     <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                        <a class="page-link" href="@Url.Action("Index", new { pageNum = i })">@i</a>
+                        <a class="page-link paginators" href="@Url.Action("Index", new { pageNum = i })">@i</a>
                     </li>
                 }
 
                 @if (ViewBag.CurrentPage < ViewBag.TotalPages)
                 {
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index", new { pageNum = ViewBag.CurrentPage + 1 })">Next</a>
+                        <a class="page-link paginators" href="@Url.Action("Index", new { pageNum = ViewBag.CurrentPage + 1 })"style="background-color:gold;color:black;border-color:black">Next</a>
                     </li>
                 }
 

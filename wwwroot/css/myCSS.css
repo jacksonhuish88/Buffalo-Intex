@@ -75,9 +75,10 @@ cursor: pointer;
     padding-right:25px;
     width:175px;
     font-size:18px;
+    color:white
 }
 
-.myInput {
+.myInput{
     width: 275px;
     height: 32px;
 }
@@ -158,4 +159,27 @@ cursor: pointer;
 
 th, td, dt, dd{
     color:white
+}
+
+dt, dd {
+    font-size:18px;
+}
+
+.paginators {
+    background-color:gold;
+    color:black;
+    border-color:black
+}
+
+.paginators:hover {
+    background-color: darkgoldenrod;
+    color:white
+}
+
+.edd{
+    color:gold
+}
+
+.edd:hover {
+    color: darkgoldenrod
 }
