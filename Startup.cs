@@ -45,13 +45,20 @@ namespace Buffalo_Intex
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyDb")));
 
-            // Register ApplicationDbContext
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("LoginConnection")));
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("MummyDb")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //// Register ApplicationDbContext
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseNpgsql(Configuration.GetConnectionString("LoginConnection")));
+
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
