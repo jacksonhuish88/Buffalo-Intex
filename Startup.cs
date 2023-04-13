@@ -1,3 +1,4 @@
+using Buffalo_Intex.Controllers;
 using Buffalo_Intex.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +42,10 @@ namespace Buffalo_Intex
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 3;
             });
+
+            services.AddSingleton<Microsoft.ML.OnnxRuntime.InferenceSession>(
+                new Microsoft.ML.OnnxRuntime.InferenceSession("decisiontreemod.onnx"));
+
 
             services.AddDbContext<postgresContext>(options =>
                 options.UseNpgsql(

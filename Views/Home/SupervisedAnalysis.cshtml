@@ -1,108 +1,322 @@
-﻿@{
+﻿@*@{
+        ViewData["Title"] = "Supervised Analysis";
+    }
+
+    <div class="text-center">
+        <h1 class="display-4">Supervised Analyis</h1>
+    </div>
+
+
+    <div class="row text-center" style="padding-top:50px">
+        <div class="col-7">
+            <h4>Fill out the form to predict how your mummy was most likely wrapped</h4>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="HeadDirection" class="myLabelSuper">Head Direction:</label>
+                <select id="HeadDirection" class="form-control myInput">
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="color: white; margin-bottom: 15px">
+                <label for="age-at-death">Age at Death:</label>
+                <select id="age-at-death" name="age-at-death">
+                    <option value="A">A</option>
+                    <option value="C">C</option>
+                    <option value="I">I</option>
+                    <option value="N">N</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="color: white; margin-bottom: 15px">
+                <label for="WrappingMaterial" class="myLabelSuper">Wrapping Material:</label>
+                <select id="WrappingMaterial" class="form-control myInput">
+                    <option value="Linen">Linen</option>
+                    <option value="Linen Background">Linen Background</option>
+                    <option value="Linen Red">Linen Red</option>
+                    <option value="Linen VLS">Linen VLS</option>
+                    <option value="Wool">Wool</option>
+                    <option value="Wool - Tapestry">Wool - Tapestry</option>
+                    <option value="Wool - Thread">Wool - Thread</option>
+                    <option value="Other">Other</option>
+                    <option value="Other - Burlap">Other - Burlap</option>
+                    <option value="Other - Vegetable Fiber">Other - Vegetable Fiber</option>
+                </select>
+            </div>
+
+
+            <button id="custom-button"type="submit" class="btn btn-primary" style="margin-top:12px;">Predict Wrapping!</button>
+
+        </div>
+
+        <div class="col-5">
+            <h3 style="margin-top:125px">
+                Fill out the form to see how your mummy was most likely wrapped<span class="dotOne"> . </span>
+                <span class="dotTwo"> . </span>
+                <span class="dotThree"> . </span>
+            </h3>
+        </div>
+    </div>
+
+    <h4>Prediction:</h4>
+    <h4 id="predictionResult"></h4>*@
+
+@{
     ViewData["Title"] = "Supervised Analysis";
 }
-
 <div class="text-center">
     <h1 class="display-4">Supervised Analyis</h1>
 </div>
-
-
-<div class="row text-center" style="padding-top:50px">
-    <div class="col-7">
-        <h4>Fill out the form to predict how your mummy was most likely wrapped</h4>
-        <form id="account" method="post">
-            <div style="margin-left:10%;margin-top:42px;">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
-                    <label for="HeadDirection" class="myLabelSuper">Head Direction:</label>
-                    <input for="HeadDirection" class="form-control myInput" />
-                    <!-- <span asp-validation-for="Burialmain" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="Sex" class="myLabelSuper">Sex:</label>
-                    <input for="Sex" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="NorthSouth" class="myLabelSuper">North(N) or South(S):</label>
-                    <input for="NorthSouth" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="Depth" class="myLabelSuper">Depth</label>
-                    <input for="Depth" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="EastWest" class="myLabelSuper">East(E) or West(W):</label>
-                    <input for="EastWest" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="AdultSubAdult" class="myLabelSuper">Adult (A or C):</label>
-                    <input for="AdultSubAdult" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="FaceBundles" class="myLabelSuper">Face Bundles (T or F):</label>
-                    <input for="FaceBundles" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="SouthToHead" class="myLabelSuper">South to Head Distance:</label>
-                    <input for="SouthToHead" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="Preservation" class="myLabelSuper">Preservation:</label>
-                    <input for="Preservation" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="EastWestSquare" class="myLabelSuper">East West Square: </label>
-                    <input for="EastWestSquare" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="Goods" class="myLabelSuper">Goods:</label>
-                    <input for="Goods" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="Wrapping" class="myLabelSuper">Wrapping:</label>
-                    <input for="Wrapping" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="SamplesCollected" class="myLabelSuper">Samples Collected (T or F):</label>
-                    <input for="SamplesCollected" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="Area" class="myLabelSuper">Area:</label>
-                    <input for="Area" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="WestToFeet" class="myLabelSuper">West to Feet:</label>
-                    <input for="WestToFeet" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
-                <div class="form-group" style="color: white; margin-bottom: 15px">
-                    <label for="AgeAtDeath" class="myLabelSuper">Age at Death:</label>
-                    <input for="AgeAtDeath" class="form-control myInput" />
-                    <!-- <span asp-validation-for="something2" class="text-danger"></span> -->
-                </div>
+<form>
+    <div class="row text-center" style="padding-top:50px">
+        <div class="col-7">
+            <h4>Fill out the form to predict how your mummy was most likely wrapped</h4>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="HeadDirection" class="myLabelSuper">Head Direction:</label>
+                <select id="HeadDirection" class="form-control myInput" name="HeadDirection">
+                    <option value="-">-</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                </select>
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-top:12px;">Submit Information</button>
-        </form>
+            <div class="form-group" style="color: white; margin-bottom: 15px">
+                <label for="AgeAtDeath" class="myLabelSuper">Age At Death:</label>
+                <select id="AgeAtDeath" class="form-control myInput" name="AgeAtDeath">
+                    <option value="-">-</option>
+                    <option value="A">A</option>
+                    <option value="C">C</option>
+                    <option value="I">I</option>
+                    <option value="N">N</option>
+                </select>
+            </div>
+            <div class="form-group" style="color: white; margin-bottom: 15px">
+                <label for="WrappingMaterial" class="myLabelSuper">Wrapping Material:</label>
+                <select id="WrappingMaterial" class="form-control myInput" name="Wrapping Material">
+                    <option value="-">-</option>
+                    <option value="Linen">Linen</option>
+                    <option value="Linen Background">Linen Background</option>
+                    <option value="Linen Red">Linen Red</option>
+                    <option value="Linen VLS">Linen VLS</option>
+                    <option value="Wool">Wool</option>
+                    <option value="Wool - Tapestry">Wool - Tapestry</option>
+                    <option value="Wool - Thread">Wool - Thread</option>
+                    <option value="Other">Other</option>
+                    <option value="Other - Burlap">Other - Burlap</option>
+                    <option value="Other - Vegetable Fiber">Other - Vegetable Fiber</option>
+                </select>
+            </div>
+            <button id="custom-button">Predict Wrapping!</button>
+        </div>
     </div>
+</form>
+<h4>Prediction:</h4>
+<h4 id="predictionResult"></h4>
 
-    <div class="col-5">
-        <h3 style="margin-top:125px">
-            Fill out the form to see how your mummy was most likely wrapped<span class="dotOne"> . </span>
-            <span class="dotTwo"> . </span>
-            <span class="dotThree"> . </span>
-        </h3>
-    </div>
-</div>
+<script>
+    const customButton = document.getElementById('custom-button');
+    customButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const inputData = {
+            "headdirection_": 0,
+            "headdirection_E": 0,
+            "headdirection_W": 0,
+            "ageatdeath_": 0,
+            "ageatdeath_A": 0,
+            "ageatdeath_C": 0,
+            "ageatdeath_I": 0,
+            "ageatdeath_N": 0,
+            "material_Linen": 0,
+            "material_Linen_background": 0,
+            "material_Linen_red": 0,
+            "material_Linen_VLS": 0,
+            "material_Other": 0,
+            "material_Other_burlap": 0,
+            "material_Other_vegetable_fiber": 0,
+            "material_Wool": 0,
+            "material_Wool_tapestry": 0,
+            "material_Wool_thread": 0,
+        }
+
+        function updateInputData() {
+            const depthInput = document.querySelector('#material');
+            const headDirectionInput = document.querySelector('#headDirection');
+            const ageAtDeathInput = document.querySelector('#ageAtDeath');
+            inputData.depth = parseFloat(depthInput.value);
+            if (ageAtDeathInput === 'A') {
+                inputData.ageatdeath_A = 1;
+                inputData.ageatdeath_C = 0;
+                inputData.ageatdeath_N = 0;
+                inputData.ageatdeath_ = 0;
+
+            }
+            else if (ageAtDeathInput === 'C') {
+                inputData.ageatdeath_C = 1;
+                inputData.ageatdeath_A = 0;
+                inputData.ageatdeath_N = 0;
+                inputData.ageatdeath_ = 0;
+
+            }
+            else if (ageAtDeathInput === 'I') {
+                inputData.ageatdeath_I = 1;
+                inputData.ageatdeath_A = 0;
+                inputData.ageatdeath_N = 0;
+                inputData.ageatdeath_ = 0;
+
+            }
+            else if (ageAtDeathInput === 'N') {
+                inputData.ageatdeath_N = 1;
+                inputData.ageatdeath_A = 0;
+                inputData.ageatdeath_C = 0;
+                inputData.ageatdeath_ = 0;
+            }
+            if (headDirectionInput == 'E') {
+                inputData.headdirection_E = 1;
+                inputData.headdirection_W = 0;
+                inputData.headdirection_ = 0;
+            }
+            else if (headDirectionInput == 'W') {
+                inputData.headdirection_E = 0;
+                inputData.headdirection_W = 1;
+                inputData.headdirection_ = 0;
+            }
+            if (materialInput == 'Linen') {
+                inputData.material_Linen = 1;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Linen background') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 1;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Linen Red') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 1;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Linen VLS') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 1;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Other') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 1;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Other - Burlap') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 1;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Other - Vegetable Fiber') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 1;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Wool') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 1;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Wool - Tapestry') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 1;
+                inputData.material_Wool_thread = 0;
+            }
+            else if (materialInput == 'Wool - Thread') {
+                inputData.material_Linen = 0;
+                inputData.material_Linen_background = 0;
+                inputData.material_Linen_red = 0;
+                inputData.material_Linen_VLS = 0;
+                inputData.material_Other = 0;
+                inputData.material_Other_burlap = 0;
+                inputData.material_Other_vegetable_fiber = 0;
+                inputData.material_Wool = 0;
+                inputData.material_Wool_tapestry = 0;
+                inputData.material_Wool_thread = 1;
+            }
+        }
+
+        fetch('/predict', {
+            method: 'POST',
+            body: JSON.stringify(inputData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(prediction => {
+                console.log(prediction);
+                // Update the h4 tag with the prediction result
+                document.querySelector('#predictionResult').textContent = String(prediction.predictedValue);
+                console.log("it got here at least");
+            })
+            .catch(error => {
+                alert("Something went wrong...");
+            });
+    })
+</script>
