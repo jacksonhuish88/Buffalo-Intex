@@ -46,6 +46,9 @@ namespace Buffalo_Intex
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<MummyDbContext>();
 
+            //services.AddSingleton<InferenceSession>(
+              //  new InferenceSession(""));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
