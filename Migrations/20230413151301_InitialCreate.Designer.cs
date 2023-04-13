@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Buffalo_Intex.Migrations
 {
     [DbContext(typeof(MummyDbContext))]
-    [Migration("20230412001601_SomethingHere")]
-    partial class SomethingHere
+    [Migration("20230413151301_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -132,7 +132,7 @@ namespace Buffalo_Intex.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Burialmain");
+                    b.ToTable("Burialman");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

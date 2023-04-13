@@ -33,7 +33,7 @@ namespace Buffalo_Intex
         //public virtual DbSet<BiologicalC14> BiologicalC14 { get; set; }
         //public virtual DbSet<Bodyanalysischart> Bodyanalysischart { get; set; }
         //public virtual DbSet<Books> Books { get; set; }
-        public DbSet<Burialmain> Burialman { get; set; }
+        public DbSet<Burialmain> Burialmain { get; set; }
 
         //public virtual DbSet<BurialmainBiological> BurialmainBiological { get; set; }
         //public virtual DbSet<BurialmainBodyanalysischart> BurialmainBodyanalysischart { get; set; }
