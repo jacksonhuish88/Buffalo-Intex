@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Buffalo_Intex.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ namespace Buffalo_Intex.Controllers
     public class HomeController : Controller
     {
 
-        private MummyDbContext repo { get; set; }
+        private postgresContext repo { get; set; }
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, MummyDbContext temp)
+        public HomeController(ILogger<HomeController> logger, postgresContext temp)
         {
             _logger = logger;
             repo = temp;
@@ -39,8 +40,12 @@ namespace Buffalo_Intex.Controllers
 
         public IActionResult BurialSummary()
         {
-            // var data = repo.Burialmain.ToList();
-            return View();
+            // var burials = repo.Burialmain.ToList();
+            var b = new BurialmainViewModel
+            {
+                Burialmain = repo.Burialmain
+            };
+            return View(b);
         }
 
         public IActionResult SupervisedAnalysis()

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Buffalo_Intex;
 
-namespace Buffalo_Intex.Controllers
+namespace Buffalo_Intex
 {
     public class BurialmainsController : Controller
     {

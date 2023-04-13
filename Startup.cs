@@ -1,9 +1,11 @@
+using Buffalo_Intex.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,15 +41,20 @@ namespace Buffalo_Intex
                 options.Password.RequiredUniqueChars = 3;
             });
 
-            services.AddDbContext<MummyDbContext>(options =>
+            services.AddDbContext<postgresContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyDb")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<MummyDbContext>();
+            // Register ApplicationDbContext
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("LoginConnection")));
 
-            //services.AddSingleton<InferenceSession>(
-              //  new InferenceSession(""));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -98,10 +105,3 @@ namespace Buffalo_Intex
         }
     }
 }
-
-
-//services.AddDbContext<MummyDbContext>(options =>
-//    options.UseNpgsql(
-//        Configuration.GetConnectionString("MummyDb")));
-//services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<MummyDbContext>();
