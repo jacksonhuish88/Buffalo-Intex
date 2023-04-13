@@ -106,6 +106,12 @@ namespace Buffalo_Intex
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "burialDefault",
+                    pattern: "{controller=Burialmains}/{action=Index}/{id?}",
+                    defaults: new { Controller = "Burialmains", Action = "Index", pageNum = 1 });
+
                 endpoints.MapRazorPages();
             });
 

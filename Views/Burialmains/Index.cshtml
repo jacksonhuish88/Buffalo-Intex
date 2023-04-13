@@ -99,3 +99,34 @@
 }
     </tbody>
 </table>
+
+<div class="row mt-3">
+    <div class="col">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+
+                @if (ViewBag.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { pageNum = ViewBag.CurrentPage - 1 })">Previous</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { pageNum = i })">@i</a>
+                    </li>
+                }
+
+                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { pageNum = ViewBag.CurrentPage + 1 })">Next</a>
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    </div>
+</div>

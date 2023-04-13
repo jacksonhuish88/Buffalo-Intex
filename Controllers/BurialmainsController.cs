@@ -19,9 +19,27 @@ namespace Buffalo_Intex.Controllers
         }
 
         // GET: Burialmains
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int pageNum = 1)
         {
-            return View(await _context.Burialmain.ToListAsync());
+            int pageSize = 25; // number of records per page
+
+            // calculate the number of records to skip based on the current page number and page size
+            int skip = (pageNum - 1) * pageSize;
+
+            // retrieve a subset of the data from the database using Skip() and Take() methods
+            var burials = _context.Burialmain
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            // calculate the total number of pages based on the total number of records and page size
+            int totalPages = (int)Math.Ceiling(_context.Burialmain.Count() / (double)pageSize);
+
+            // pass the subset of data and pagination information to the view
+            ViewBag.CurrentPage = pageNum;
+            ViewBag.TotalPages = totalPages;
+
+            return View(burials);
         }
 
         // GET: Burialmains/Details/5
@@ -150,3 +168,4 @@ namespace Buffalo_Intex.Controllers
         }
     }
 }
+
