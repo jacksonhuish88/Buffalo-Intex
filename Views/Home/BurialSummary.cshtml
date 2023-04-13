@@ -6,6 +6,7 @@
 <div class="text-center">
     <h1 class="display-4">Burial Summary Page</h1>
     <p>Below is information that has been recorded in BYU's Egyptian Archeology journals</p>
+    <a asp-controller="Burialmains" asp-action="Index">View Records</a>
 </div>
 
 
@@ -22,12 +23,12 @@
                 Burial Number: @b.Burialnumber
             </h4>
         </div>
-        <div class="card-text p-1">@b.Sex</div>
-        <div class="card-text p-1">@b.Depth</div>
-        <div class="card-text p-1">@b.Length</div>
-        <div class="card-text p-1">@b.Ageatdeath</div>
-        <div class="card-text p-1">@b.Headdirection</div>
-        <div class="card-text p-1">@b.Haircolor</div>
+        <div class="card-text p-1">Sex:@(b.Sex ?? "NA")</div>
+        <div class="card-text p-1">Depth: @b.Depth</div>
+        <div class="card-text p-1">Length: @b.Length</div>
+        <div class="card-text p-1">Age at death:@b.Ageatdeath</div>
+        <div class="card-text p-1">Head direction:@b.Headdirection</div>
+        <div class="card-text p-1">Haircolor: @b.Haircolor</div>
     </div>
 } (edited)
 
@@ -58,6 +59,4 @@
     <!-- OUR CODE FOR PULLING THE DATA WOULD GO HERE
 </table>
 -->
-
-<a asp-controller="Burialmains" asp-action="Index">View Records</a>
 

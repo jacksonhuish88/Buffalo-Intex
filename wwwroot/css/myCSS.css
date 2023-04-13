@@ -156,6 +156,6 @@ cursor: pointer;
     font-size: 18px;
 }
 
-th{
+th, td, dt, dd{
     color:white
 }
