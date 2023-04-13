@@ -32,6 +32,10 @@ namespace Buffalo_Intex.Controllers
         {
             return View();
         }
+        public IActionResult AdminCrud()
+        {
+            return View();
+        }
 
         public IActionResult BurialSummary()
         {
