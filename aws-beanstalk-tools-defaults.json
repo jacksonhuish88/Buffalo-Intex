@@ -1,22 +1,24 @@
 
 {
     "region" : "us-east-1",
-    "configuration" : "Debug",
+    "configuration" : "Release",
     "framework"     : "netcoreapp3.1",
     "self-contained" : false,
-    "application"    : "BuffaloIntexJH03",
-    "environment"    : "BuffaloIntexJH03-dev",
+    "application"    : "JEB",
+    "environment"    : "JEB-dev",
     "enable-xray"    : false,
     "enhanced-health-type" : "basic",
-    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-003b9ea827dee4136,sg-089b0405cf88b5bbf\";\"aws:ec2:vpc,Subnets\"=\"subnet-0fbd56457f5c1c8e0\"",
-    "solution-stack"       : "64bit Amazon Linux 2 v2.5.2 running .NET Core",
+    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-003b9ea827dee4136\";\"aws:ec2:vpc,Subnets\"=\"subnet-0fbd56457f5c1c8e0\"",
+    "solution-stack"       : "64bit Windows Server Core 2019 v2.11.2 running IIS 10.0",
     "environment-type"     : "SingleInstance",
     "loadbalancer-type"    : "application",
-    "cname"                : "buffalointexjh03-dev",
+    "cname"                : "jeb-dev",
     "instance-type"        : "t2.micro",
     "key-pair"             : "ireallyhopethisworks",
     "health-check-url"     : "/",
     "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
     "service-role"         : "aws-elasticbeanstalk-service-role",
-    "proxy-server"         : "nginx"
+    "proxy-server"         : "nginx",
+    "app-path"             : "/",
+    "iis-website"          : "Default Web Site"
 }

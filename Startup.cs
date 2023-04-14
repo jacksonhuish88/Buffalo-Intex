@@ -58,17 +58,6 @@ namespace Buffalo_Intex
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //// Register ApplicationDbContext
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseNpgsql(Configuration.GetConnectionString("LoginConnection")));
-
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
-
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -83,7 +72,6 @@ namespace Buffalo_Intex
                 googleOptions.ClientSecret = "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"; // Configuration["Authentication:Google:ClientSecret"];
             });
 
-            // services.AddScoped<IMummyRepository, EFMummyRepository>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,6 +95,15 @@ namespace Buffalo_Intex
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
+
+            // CSP Header
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Content-Security-Policy", "style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'");
+                await next();
+            });
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
