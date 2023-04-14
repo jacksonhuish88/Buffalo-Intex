@@ -44,7 +44,7 @@ namespace Buffalo_Intex
             });
 
             services.AddSingleton<Microsoft.ML.OnnxRuntime.InferenceSession>(
-                new Microsoft.ML.OnnxRuntime.InferenceSession("decisiontreemod.onnx"));
+                new Microsoft.ML.OnnxRuntime.InferenceSession("wwwroot/decisiontreemod.onnx"));
 
 
             services.AddDbContext<postgresContext>(options =>
