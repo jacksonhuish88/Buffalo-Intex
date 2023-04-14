@@ -4,7 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="text-center">
+    <h1 class="display-4">Create a New Record</h1>
+    <p>Fill out the form below to create a new mummy record</p>
+</div>
 
 <h4>AspNetUsers</h4>
 <hr />
@@ -42,6 +45,7 @@
                     <input class="form-check-input" asp-for="EmailConfirmed" /> @Html.DisplayNameFor(model => model.EmailConfirmed)
                 </label>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="PasswordHash" class="control-label myLabel"></label>
                 <input asp-for="PasswordHash" class="form-control myInput" />

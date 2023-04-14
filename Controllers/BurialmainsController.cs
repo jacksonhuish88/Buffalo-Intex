@@ -168,12 +168,11 @@ namespace Buffalo_Intex.Controllers
         }
 
         // GET FILTER
-        [HttpGet]
         public IActionResult Filter()
         {
             return View();
         }
-        public IActionResult Filter(string sex, string burialdepth, string estimatestature, string ageatdeath, string headdirection, string squarenorthsouth, string northsouth, string squareeastwest, string eastwest, string area, string burialnumber, string haircolor)
+        public IActionResult FilterMummies(string sex, string burialdepth, string estimatestature, string ageatdeath, string headdirection, string squarenorthsouth, string northsouth, string squareeastwest, string eastwest, string area, string burialnumber, string haircolor)
         {
             var burials = _context.Burialmain;
 

@@ -183,3 +183,10 @@ dt, dd {
 .edd:hover {
     color: darkgoldenrod
 }
+
+label{
+    color:white;
+    font-size:18px;
+    width:150px
+}
+
