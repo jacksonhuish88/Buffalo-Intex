@@ -5,7 +5,8 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Buffalo_Intex
+namespace 
+    _Intex
 {
     public partial class Biological
     {
